@@ -4,23 +4,23 @@ import java.util.ArrayList;
 
 public class Database {
 
-    ArrayList<String> list = new ArrayList<String>();
+    ArrayList<Song> list = new ArrayList<>();
 
-    void post(String item) {
-        list.add(item);
+    void post(Song song) {
+        list.add(song);
     }
 
-    void put(int index, String item) {
+    void put(int index, Song song) {
         try {
-            list.set(index, item);
+            list.set(index, song);
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
-    void delete(String item) {
+    void delete(Song song) {
         try {
-            list.remove(item);
+            list.remove(song);
         } catch(Exception e) {
             e.printStackTrace();
         }
