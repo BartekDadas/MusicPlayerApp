@@ -1,18 +1,23 @@
 package MusicPlayerCRUD;
 
-public class MainModelView {
+class MainModelView {
     Database db = new Database();
 
-    void  getSong(String song) {
-        db.post(song);
+    void  getSong(String title,String author, String id, MusicCategory category) {
+        db.post(new Song(title, author, id, category));
     }
+
     void showPlaylist() {
         db.list.forEach(System.out::println);
     }
-    void updateSong(int index, String newSong){
-        db.put(index, newSong);
+
+    void updateSong(int index, String title,String author, String id, MusicCategory category) {
+        db.put(index, new Song(title,author, id, category));
     }
-    void deleteSong(String song) {
-        db.delete(song);
+
+    void deleteSong(String title,String author, String id, MusicCategory category) {
+        db.delete(new Song(title,author, id, category));
     }
+
+
 }
