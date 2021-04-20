@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Database {
 
-    ArrayList<User> users = new ArrayList<User>();
+    ArrayList<User> users =  ArrayList(new User("Bob", "1234"));
 
     void post(User user) {
         users.add(user);
@@ -25,5 +25,13 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+//    boolean buildRegistration(User user) {
+//        if (user.password.length() <= 8) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
 }

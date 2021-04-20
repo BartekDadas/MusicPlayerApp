@@ -5,8 +5,7 @@ public class MainModelView {
     Database db = new Database();
 
     void createAccount(String login, String password) {
-        User user1 = new User(login, password);
-        db.post(user1);
+        db.post(new User(login,password));
     }
 
     void checkAccounts() {
@@ -14,13 +13,11 @@ public class MainModelView {
     }
 
     void updateAccount(int index, String newLogin, String newPassword) {
-        User newUser = new User(newLogin, newPassword);
-        db.put(index, newUser);
+        db.put(index, new User(newLogin, newPassword));
     }
 
     void deleteAccount(String login, String password) {
-        User user1 = new User(login, password);
-        db.delete(user1);
+        db.delete(new User(login, password));
     }
 
 }

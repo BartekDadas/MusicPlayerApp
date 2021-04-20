@@ -4,8 +4,7 @@ class MainModelView {
     Database db = new Database();
 
     void  getSong(String title,String author, String id, MusicCategory category) {
-        Song song = new Song(title, author, id, category);
-        db.post(song);
+        db.post(new Song(title, author, id, category));
     }
 
     void showPlaylist() {
@@ -13,13 +12,11 @@ class MainModelView {
     }
 
     void updateSong(int index, String title,String author, String id, MusicCategory category) {
-        Song newSong = new Song(title,author, id, category);
-        db.put(index, newSong);
+        db.put(index, new Song(title,author, id, category));
     }
 
     void deleteSong(String title,String author, String id, MusicCategory category) {
-        Song song = new Song(title,author, id, category);
-        db.delete(song);
+        db.delete(new Song(title,author, id, category));
     }
 
 
