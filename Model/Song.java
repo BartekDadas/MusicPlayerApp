@@ -1,4 +1,6 @@
-package MusicPlayerCRUD;
+package com.Model;
+
+import java.util.UUID;
 
 enum MusicCategory{
     RAP, ROCK, METAL, TECHNO
@@ -6,15 +8,14 @@ enum MusicCategory{
 
 public class Song {
 
+    String id = UUID.randomUUID().toString();
     String title;
-    String id;
     String author;
     MusicCategory category;
 
-    Song(String title,String author, String id, MusicCategory category) {
+    Song(String title,String author, MusicCategory category) {
         this.title = title;
         this.author = author;
-        this.id = id;
         this.category = category;
     }
 
