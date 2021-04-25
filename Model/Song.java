@@ -2,10 +2,6 @@ package com.Model;
 
 import java.util.UUID;
 
-enum MusicCategory{
-    RAP, ROCK, METAL, TECHNO
-}
-
 public class Song {
 
     String id = UUID.randomUUID().toString();

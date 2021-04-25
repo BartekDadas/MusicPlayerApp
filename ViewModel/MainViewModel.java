@@ -1,9 +1,11 @@
 package com.ViewModel;
 
-import com.Model.Message;
-import com.Model.User;
-import com.Model.UserDatabase;
 import com.Model.SongDatabase;
+import com.Model.UserDatabase;
+import com.Model.User;
+import com.Model.Message;
+import com.Model.MusicCategory;
+import com.Model.AccessType;
 
 public class MainViewModel {
 
@@ -28,9 +30,25 @@ public class MainViewModel {
 
 //    SONG LOGIC
 
+    void addSongToMyList(String title, String author, MusicCategory category ) {
+        if (songDB.verifySong(title, author, category)) {
+            songDB.post(title, author, category);
+
+
+
+        }
+
+    }
 
     void showAllSongs() {
         songDB.list.forEach(System.out::println);
+    }
+    void showMyList() {
+
+    }
+
+    void removeSongFromMyList(){
+
     }
 
 }

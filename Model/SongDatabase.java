@@ -1,12 +1,39 @@
 package com.Model;
 
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class SongDatabase {
 
-    public ArrayList<Song> list = new ArrayList<>();
+    Song song1 = new Song("We will rock you","Queen",MusicCategory.ROCK);
+    Song song2 = new Song("Rap god", "Eminem", MusicCategory.RAP);
+    Song song3 = new Song("Nothing else matters", "Metallica", MusicCategory.METAL);
+    Song song4 = new Song("Sandstorm", "Darude",MusicCategory.TECHNO);
+    Song song5 = new Song("Roar", "Katy Perry",MusicCategory.POP);
+
+    public ArrayList<Song> list = new ArrayList<>(List.of(song1, song2, song3, song4, song5));
+
+    ArrayList<Song> myList = new ArrayList<>(List.of(song5, song4));
 
 
+    public void post(String title, String author, MusicCategory category) {
+        myList.add(new Song(title, author, category));
+    }
+
+    public boolean verifySong(String title, String author, MusicCategory category) {
+        Song song = new Song(title, author, category);
+        for(Song listSong: list){
+            if (song == listSong) {
+                return true;
+            }
+        }
+        return false;
+    }
+//    public Song trackSong(String title, String author, MusicCategory category) {
+//        Song song = song
+//        return song;
+//    }
 }
 
 
