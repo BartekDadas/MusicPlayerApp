@@ -5,7 +5,7 @@ import com.Model.UserDatabase;
 import com.Model.User;
 import com.Model.Message;
 import com.Model.MusicCategory;
-import com.Model.AccessType;
+import com.Model.ListMoves;
 
 public class MainViewModel {
 
@@ -28,14 +28,20 @@ public class MainViewModel {
         }
     }
 
+
 //    SONG LOGIC
 
-    void addSongToMyList(String title, String author, MusicCategory category ) {
+
+    public void moveSongOnMyList(String title, String author, MusicCategory category, ListMoves move) {
         if (songDB.verifySong(title, author, category)) {
-            songDB.post(title, author, category);
-
-
-
+            switch (move) {
+                case ADD:
+                    songDB.post(title, author, category);
+                case REMOVE:
+                    songDB.delete(title, author, category);
+            }
+        } else {
+            System.out.println(Message.missingSong);
         }
 
     }
@@ -44,11 +50,7 @@ public class MainViewModel {
         songDB.list.forEach(System.out::println);
     }
     void showMyList() {
-
-    }
-
-    void removeSongFromMyList(){
-
+        songDB.myList.forEach(System.out::println);
     }
 
 }

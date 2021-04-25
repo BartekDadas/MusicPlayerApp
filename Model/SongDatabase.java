@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SongDatabase {
+public class SongDatabase {// extends Access
 
     Song song1 = new Song("We will rock you","Queen",MusicCategory.ROCK);
     Song song2 = new Song("Rap god", "Eminem", MusicCategory.RAP);
@@ -14,11 +14,17 @@ public class SongDatabase {
 
     public ArrayList<Song> list = new ArrayList<>(List.of(song1, song2, song3, song4, song5));
 
-    ArrayList<Song> myList = new ArrayList<>(List.of(song5, song4));
+    public ArrayList<Song> myList = new ArrayList<>(List.of(song5, song4));
 
 
     public void post(String title, String author, MusicCategory category) {
-        myList.add(new Song(title, author, category));
+        Song song = new Song(title, author, category);
+        for(Song listSong: list){
+            if (song == listSong) {
+                myList.add(listSong);
+            }
+        }
+
     }
 
     public boolean verifySong(String title, String author, MusicCategory category) {
@@ -30,10 +36,12 @@ public class SongDatabase {
         }
         return false;
     }
-//    public Song trackSong(String title, String author, MusicCategory category) {
-//        Song song = song
-//        return song;
-//    }
+
+    public void delete(String title, String author, MusicCategory category) {
+        Song song = new Song(title, author, category);
+        myList.removeIf(listSong -> song == listSong);
+    }
+
 }
 
 

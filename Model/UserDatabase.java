@@ -2,8 +2,8 @@ package com.Model;
 
 import java.util.ArrayList;
 
-public class UserDatabase {
-    // change for collection?
+public class UserDatabase {// extends Access
+
     public ArrayList<User> users = new ArrayList<>();
 
     public void post(String login, String password) {
@@ -18,14 +18,16 @@ public class UserDatabase {
         }
     }
 
-    public boolean exist(String login, String password){
-        for(User user: users) {
+    public boolean exist(String login, String password) {
+        for (User user : users) {
             if (user.login.equals(login) && user.password.equals(password)) {
                 return true;
             }
         }
         return false;
     }
+
+
 
 //    boolean registration(User user) {
 //        if (user.password.length() <= 8) {
