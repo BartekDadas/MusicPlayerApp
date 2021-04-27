@@ -1,10 +1,13 @@
 package com.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserDatabase {// extends Access
 
-    public ArrayList<User> users = new ArrayList<>();
+    User Mark = new User("Mark1342", "9780");
+
+    public ArrayList<User> users = new ArrayList<>(List.of(Mark));
 
     public void post(String login, String password) {
         users.add(new User(login, password));
@@ -25,6 +28,14 @@ public class UserDatabase {// extends Access
             }
         }
         return false;
+    }
+    public void changePassword(String login, String oldPassword, String newPassword) {// commit this
+        for (User user : users) {
+            if (user.login.equals(login) && user.password.equals(oldPassword)) {
+                user.password = newPassword;
+            }
+        }
+
     }
 
 
