@@ -1,9 +1,7 @@
 package com.Model;
 
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -22,11 +20,11 @@ public class SongDatabase {// extends Access
     public ArrayList<ArrayList<Song>> playlists = new ArrayList<>();
 
 
-    public void post(String title, String author, MusicCategory category) {
+    public void post(String title, String author, MusicCategory category, ArrayList<Song> playlist) {
         Song song = new Song(title, author, category);
-        for(Song listSong: list){
+        for(Song listSong: list) {
             if (song == listSong) {
-                myList.add(listSong);
+                playlist.add(listSong);
             }
         }
 
@@ -42,9 +40,9 @@ public class SongDatabase {// extends Access
         return false;
     }
 
-    public void delete(String title, String author, MusicCategory category) {
+    public void delete(String title, String author, MusicCategory category, ArrayList<Song> playlist) {
         Song song = new Song(title, author, category);
-        myList.removeIf(listSong -> song == listSong);
+        playlist.removeIf(listSong -> song == listSong);
     }
 
     public void createNewList(ArrayList<Song> name) {
@@ -55,13 +53,6 @@ public class SongDatabase {// extends Access
 
     }
 
-//    public ArrayList<Song> makeNewList() {
-//        return new ArrayList<>();
-//    }
-//
-//    public void deleteList(ArrayList theList) {
-//        theList.clear();
-//    }
 
 }
 

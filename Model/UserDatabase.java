@@ -29,7 +29,7 @@ public class UserDatabase {// extends Access
         }
         return false;
     }
-    public void changePassword(String login, String oldPassword, String newPassword) {// commit this
+    public void changePassword(String login, String oldPassword, String newPassword) {
         for (User user : users) {
             if (user.login.equals(login) && user.password.equals(oldPassword)) {
                 user.password = newPassword;
