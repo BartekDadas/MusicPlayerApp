@@ -3,7 +3,7 @@ package com.Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDatabase {// extends Access
+public class UserDatabase {
 
     User Mark = new User("Mark1342", "9780");
 
@@ -21,31 +21,21 @@ public class UserDatabase {// extends Access
         }
     }
 
-    public boolean exist(String login, String password) {
+    public User exist(String login, String password) {
         for (User user : users) {
             if (user.login.equals(login) && user.password.equals(password)) {
-                return true;
+                return user;
             }
         }
-        return false;
+        return null;
     }
+
     public void changePassword(String login, String oldPassword, String newPassword) {
         for (User user : users) {
             if (user.login.equals(login) && user.password.equals(oldPassword)) {
                 user.password = newPassword;
             }
         }
-
     }
-
-
-
-//    boolean registration(User user) {
-//        if (user.password.length() <= 8) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
 
 }
