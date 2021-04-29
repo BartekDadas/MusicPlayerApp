@@ -1,13 +1,14 @@
 package com.ViewModel;
 
 import com.Model.*;
+
 import java.util.regex.Pattern;
 
 public class MainViewModel {
 
     UserDatabase userDB = new UserDatabase();
     SongDatabase songDB = new SongDatabase();
-    User activeUser = null;
+    public User activeUser = null;
 
     public void createUser(String login, String password) {
         userDB.post(login, password);
@@ -19,10 +20,10 @@ public class MainViewModel {
 
     public void login(String login, String password) {
         try {
-            Pattern p = Pattern.compile("");
+            Pattern p = Pattern.compile("\0nn");
             this.activeUser = userDB.exist(login, password);
             System.out.println(Message.userExist);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(Message.userMissing);
         }
     }
@@ -36,7 +37,11 @@ public class MainViewModel {
 
 
     public void addSongTo(Playlist playlist, Song song) {
-        playlist.post(song);
+        if(songDB.verifySong(song)) {
+            playlist.post(song);
+        } else {
+            System.out.println(Message.missingSong);
+        }
     }
 
     public void removeSongFrom(Playlist playlist, Song song) {
@@ -57,12 +62,12 @@ public class MainViewModel {
     }
 
     public void makeNewPlaylist(String title) {
-        activeUser.playlists.add(new Playlist(title));
+        this.activeUser.playlists.add(new Playlist(title));
     }
 
     public void deletePlaylist(Playlist playlist) {
         try {
-            activeUser.playlists.remove(playlist);
+            this.activeUser.playlists.remove(playlist);
         } catch (Exception e) {
             e.printStackTrace();
         }

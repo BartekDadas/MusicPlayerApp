@@ -14,12 +14,8 @@ public class SongDatabase {// extends Access
     Song song5 = new Song("Roar", "Katy Perry",MusicCategory.POP);
 
     public ArrayList<Song> list = new ArrayList<>(List.of(song1, song2, song3, song4, song5));
-
-
-
-
-    public boolean verifySong(String title, String author, MusicCategory category) {
-        Song song = new Song(title, author, category);
+    
+    public boolean verifySong(Song song) {
         for(Song listSong: list){
             if (song == listSong) {
                 return true;
