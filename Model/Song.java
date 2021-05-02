@@ -9,10 +9,9 @@ public class Song {
     String author;
     MusicCategory category;
 
-    Song(String title,String author, MusicCategory category) {
+    public Song(String title, String author, MusicCategory category) {
         this.title = title;
         this.author = author;
         this.category = category;
     }
-
 }

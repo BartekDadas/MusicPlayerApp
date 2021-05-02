@@ -1,19 +1,14 @@
 package com.ViewModel;
 
-import com.Model.SongDatabase;
-import com.Model.UserDatabase;
-import com.Model.User;
-import com.Model.Message;
-import com.Model.MusicCategory;
-import com.Model.ListMoves;
-import com.Model.Song;
+import com.Model.*;// this constantly change back to star so there no point of keep changing it back
 
-import java.util.ArrayList;
 
 public class MainViewModel {
 
     UserDatabase userDB = new UserDatabase();
+    UserCheckout userC = new UserCheckout();
     SongDatabase songDB = new SongDatabase();
+    public User activeUser = null;
 
     public void createUser(String login, String password) {
         userDB.post(login, password);
@@ -23,13 +18,16 @@ public class MainViewModel {
         userDB.delete(user);
     }
 
-    public void checkUser(String login, String password) {
-        if (userDB.exist(login, password)) {
+    public void login(String login, String password) {
+        try {
+            userC.filterLogin(login, password);
+            activeUser = userDB.exist(login, password);
             System.out.println(Message.userExist);
-        } else {
+        } catch (Exception e) {
             System.out.println(Message.userMissing);
         }
     }
+
     public void changeMyPassword(String login, String oldPassword, String newPassword) {
         userDB.changePassword(login, oldPassword, newPassword);
     }
@@ -38,37 +36,44 @@ public class MainViewModel {
 //    SONG LOGIC
 
 
-    public void moveSongOnMyList(String title, String author, MusicCategory category,ArrayList<Song> playlist, ListMoves move) {
-        if (songDB.verifySong(title, author, category)) {
-            switch (move) {
-                case ADD:
-                    songDB.post(title, author, category, playlist);
-                case REMOVE:
-                    songDB.delete(title, author, category, playlist);
-            }
+    public void addSongTo(Playlist playlist, Song song) {
+        if(songDB.verifySong(song)) {
+            playlist.post(song);
         } else {
             System.out.println(Message.missingSong);
         }
-
     }
 
-    public void makeNewList(ArrayList<Song> playlist) {
-        songDB.createNewList(playlist);
-    }
-
-    public void deleteSongList(ArrayList<Song> playlist) {
-        try {
-            songDB.removeNewList(playlist);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void removeSongFrom(Playlist playlist, Song song) {
+        playlist.delete(song);
     }
 
     public void showAllSongs() {
         songDB.list.forEach(System.out::println);
     }
 
-    public void showMyList() {
-        songDB.myList.forEach(System.out::println);
+
+
+//    PLAYLIST LOGIC
+
+
+    public void changeTitleOf(Playlist playlist, String newTitle ) {
+        playlist.changeTitle(newTitle);
+    }
+
+    public void makeNewPlaylist(String title) {
+        this.activeUser.playlists.add(new Playlist(title));
+    }
+
+    public void deletePlaylist(Playlist playlist) {
+        try {
+            this.activeUser.playlists.remove(playlist);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showPlaylist(Playlist playlist) {
+        playlist.get();
     }
 }
