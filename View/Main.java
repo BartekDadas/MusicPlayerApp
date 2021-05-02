@@ -12,12 +12,10 @@ public class Main {
         Playlist playlist1 = new Playlist("mySongs");
         Song song1 = new Song("We will rock you","Queen",MusicCategory.ROCK);
 
-        musicList.login("Mark1342", "9870");
-
-
+        musicList.login("Mark435", "9870");
         musicList.makeNewPlaylist("mySongs");
         musicList.addSongTo(playlist1, song1);
-        musicList.showPlaylist(playlist1);
+        musicList.showAllSongs();
 
 
 

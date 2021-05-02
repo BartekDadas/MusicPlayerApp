@@ -12,9 +12,12 @@ public class User {
     public ArrayList<Playlist> playlists = new ArrayList<>();
 
 
+
     public User(String login, String password) {
         this.login = login;
         this.password = password;
     }
+
+
 
 }

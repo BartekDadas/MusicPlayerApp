@@ -14,5 +14,4 @@ public class Song {
         this.author = author;
         this.category = category;
     }
-
 }

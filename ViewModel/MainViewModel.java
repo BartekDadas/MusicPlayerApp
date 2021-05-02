@@ -1,12 +1,12 @@
 package com.ViewModel;
 
-import com.Model.*;
+import com.Model.*;// this constantly change back to star so there no point of keep changing it back
 
-import java.util.regex.Pattern;
 
 public class MainViewModel {
 
     UserDatabase userDB = new UserDatabase();
+    UserCheckout userC = new UserCheckout();
     SongDatabase songDB = new SongDatabase();
     public User activeUser = null;
 
@@ -20,8 +20,8 @@ public class MainViewModel {
 
     public void login(String login, String password) {
         try {
-            Pattern p = Pattern.compile("\0nn");
-            this.activeUser = userDB.exist(login, password);
+            userC.filterLogin(login, password);
+            activeUser = userDB.exist(login, password);
             System.out.println(Message.userExist);
         } catch (Exception e) {
             System.out.println(Message.userMissing);
